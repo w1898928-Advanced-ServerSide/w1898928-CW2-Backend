@@ -1,0 +1,12 @@
+services:
+  rest-country-be:
+    image: ramindulakshan/restcountry-backend
+    container_name: rest-country-be
+    ports:
+      - "4000:4000"
+
+  restcountry-ui:
+    image: ramindulakshan/restcountry-frontend
+    container_name: restcountry-ui
+    ports:
+      - "3001:3000"
