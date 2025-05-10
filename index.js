@@ -4,6 +4,10 @@ const authRoutes = require('./src/routes/authRoutes');
 const blogPostRoutes = require('./src/routes/blogPostRoutes');
 const followRoutes = require('./src/routes/followRoutes');
 const reactionRoutes = require('./src/routes/reactionRoutes');
+const loggerMiddleware = require('./src/middlewares/logger');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+const errorHandler = require('./src/middlewares/errorHandler');
 const db = require('./src/config/db');
 const cors = require('cors'); // Add this line
 
@@ -24,12 +28,15 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
+app.use(loggerMiddleware)
 
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', blogPostRoutes);
 app.use('/api/follow', followRoutes);
 app.use('/api/reactions', reactionRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(errorHandler)
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
