@@ -1,8 +1,7 @@
-// swagger.js
 const swaggerAutogen = require('swagger-autogen')();
 
 const outputFile = './swagger-output.json';
-const endpointsFiles = ['./index.js']; // Your main Express file
+const endpointsFiles = ['./index.js'];
 
 const config = {
   info: {
