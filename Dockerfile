@@ -3,17 +3,12 @@
 
     WORKDIR /app
     
-    # Copy only package files first for caching
     COPY package*.json ./
-    
-    # Install dependencies
     RUN npm install
     
-    # Copy the rest of the app
-    COPY . . 
-    RUN npm run swagger
+    COPY . .
     
-    # Optional: build step for TS or transpilers
+    # Optional: If you have TypeScript or build step
     # RUN npm run build
     
     # ---- Stage 2: Production ----
@@ -21,11 +16,9 @@
     
     WORKDIR /app
     
-    # Copy only what's needed from the build stage
     COPY --from=build /app .
     
-    # Expose the port your app runs on
     EXPOSE 4000
     
-    # Run the app
     CMD ["node", "index.js"]
+    
