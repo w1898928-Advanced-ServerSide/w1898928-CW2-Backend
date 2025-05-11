@@ -1,9 +1,9 @@
 services:
   rest-country-be:
-    image: ramindulakshan/traveltales-backend
+    image: ramindulakshan/traveltales-be
     container_name: travelTales-be
     ports:
-      - "4000:4000"
+      - "4001:4000"
 
   restcountry-ui:
     image: ramindulakshan/traveltales-frontend
