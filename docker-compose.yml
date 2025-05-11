@@ -3,7 +3,7 @@ services:
     image: ramindulakshan/traveltales-be
     container_name: travelTales-be
     ports:
-      - "4001:4000"
+      - "4002:4000"
 
   restcountry-ui:
     image: ramindulakshan/traveltales-ui
