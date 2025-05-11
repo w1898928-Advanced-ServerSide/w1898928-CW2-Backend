@@ -6,7 +6,7 @@ services:
       - "4000:4000"
 
   restcountry-ui:
-    image: ramindulakshan/traveltales-frontend
+    image: ramindulakshan/traveltales-ui
     container_name: travelTales-ui
     ports:
       - "3000:3000"
