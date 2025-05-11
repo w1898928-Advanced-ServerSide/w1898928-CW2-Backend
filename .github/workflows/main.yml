@@ -15,7 +15,7 @@ jobs:
       - name: Build & Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ secrets.DOCKER_USERNAME }}/traveltales-backend
+          image: ${{ secrets.DOCKER_USERNAME }}/traveltales-be
           tags: latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
