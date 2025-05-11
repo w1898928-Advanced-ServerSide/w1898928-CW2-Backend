@@ -3,26 +3,33 @@ const router = express.Router();
 const BlogPostService = require('../services/blogPostService');
 const checkSession = require('../middlewares/sessionAuth');
 const CustomError = require('../utils/customError');
+const upload = require('../middlewares/upload');
 
 const blogPostService = new BlogPostService();
 
 // Create a new blog post
-router.post('/', checkSession, async (req, res, next) => {
+router.post('/', checkSession, upload.single('coverImage'), async (req, res, next) => {
     try {
-        const { title, content, country, dateOfVisit, coverImage } = req.body;
-        const result = await blogPostService.createBlogPost(
-            req.session.user.userId, 
-            title, 
-            content, 
-            country, 
-            dateOfVisit, 
-            coverImage
-        );
-        res.status(201).json(result);
+      const { title, content, country, dateOfVisit } = req.body;
+      const file = req.file;
+  
+      // Construct URL if file is uploaded
+      const coverImageUrl = file ? `http://localhost:4000/uploads/${file.filename}` : null;
+  
+      const result = await blogPostService.createBlogPost(
+        req.session.user.userId,
+        title,
+        content,
+        country,
+        dateOfVisit,
+        coverImageUrl
+      );
+  
+      res.status(201).json(result);
     } catch (err) {
-        next(new CustomError('Failed to create blog post', 400, err));
+      next(new CustomError('Failed to create blog post', 400, err));
     }
-});
+  });  
 
 // Get all blog posts
 router.get('/', async (req, res, next) => {

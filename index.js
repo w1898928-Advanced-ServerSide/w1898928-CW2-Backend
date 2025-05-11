@@ -36,6 +36,7 @@ app.use('/api/posts', blogPostRoutes);
 app.use('/api/follow', followRoutes);
 app.use('/api/reactions', reactionRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/uploads', express.static('uploads'));
 app.use(errorHandler)
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
