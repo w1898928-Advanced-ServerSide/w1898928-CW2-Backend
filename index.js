@@ -14,7 +14,7 @@ const cors = require('cors');
 const app = express();
 // Enable CORS for all routes
 app.use(cors({
-  origin: 'http://localhost:3002',
+  origin: 'http://localhost:3030',
   credentials: true
 }));
 const PORT = process.env.PORT || 4000;

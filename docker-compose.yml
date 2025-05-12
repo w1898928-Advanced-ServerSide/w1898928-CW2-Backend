@@ -9,4 +9,4 @@ services:
     image: ramindulakshan/traveltales-ui
     container_name: travelTales-ui
     ports:
-      - "3003:3002"
+      - "3030:3002"
