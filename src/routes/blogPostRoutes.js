@@ -14,7 +14,7 @@ router.post('/', checkSession, upload.single('coverImage'), async (req, res, nex
       const file = req.file;
   
       // Construct URL if file is uploaded
-      const coverImageUrl = file ? `http://localhost:4000/uploads/${file.filename}` : null;
+      const coverImageUrl = file ? `http://localhost:4002/uploads/${file.filename}` : null;
   
       const result = await blogPostService.createBlogPost(
         req.session.user.userId,
