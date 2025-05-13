@@ -6,6 +6,7 @@ class FollowService {
         this.followDao = new FollowDAO();
     }
 
+    // Allows a user to follow another user.
     async followUser(followerId, followingId) {
         try {
             if (!followerId || !followingId) {
@@ -17,6 +18,7 @@ class FollowService {
         }
     }
 
+    // Allows a user to unfollow another user.
     async unfollowUser(followerId, followingId) {
         try {
             if (!followerId || !followingId) {
@@ -28,6 +30,7 @@ class FollowService {
         }
     }
 
+    // Returns the list of followers for a given user.
     async getFollowers(userId) {
         try {
             if (!userId) {
@@ -39,6 +42,7 @@ class FollowService {
         }
     }
 
+    // Returns the list of users the given user is following.
     async getFollowing(userId) {
         try {
             if (!userId) {
@@ -50,6 +54,7 @@ class FollowService {
         }
     }
 
+    // Checks whether a user is following another user.
     async isFollowing(followerId, followingId) {
         try {
             if (!followerId || !followingId) {
@@ -61,6 +66,7 @@ class FollowService {
         }
     }
 
+    // Returns the number of followers and following counts for a user.
     async getFollowCounts(userId) {
         try {
             if (!userId) {
@@ -72,6 +78,7 @@ class FollowService {
         }
     }
 
+    // Suggests users the current user is not already following
     async getFollowSuggestions(userId, limit = 5) {
         try {
             if (!userId) {

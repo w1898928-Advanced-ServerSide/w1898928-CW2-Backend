@@ -7,6 +7,7 @@ class UserService {
         this.userDao = new UserDAO();
     }
 
+    // Registers a new user 
     async registerUser(username, password, email) {
         try {
             const hashedPassword = await generateHash(password);
@@ -15,7 +16,8 @@ class UserService {
             throw error;
         }
     }
-
+    
+    // Authenticates user by comparing password with hashed password.
     async loginUser(username, password) {
         try {
             const result = await this.userDao.getUserByUsername(username);
@@ -43,6 +45,7 @@ class UserService {
         }
     }
 
+    // Returns user by ID
     async getUserById(id) {
         try {
             return await this.userDao.getUserById(id);
@@ -51,6 +54,7 @@ class UserService {
         }
     }
 
+    // Returns user by username.
     async getUserByUsername(username) {
         try {
             return await this.userDao.getUserByUsername(username);
@@ -59,6 +63,7 @@ class UserService {
         }
     }
 
+    // Returns all users.
     async getAllUsers() {
         try {
             return await this.userDao.getAllUsers();
@@ -67,6 +72,7 @@ class UserService {
         }
     }
 
+    // Updates a user
     async updateUser(id, username, email) {
         try {
             return await this.userDao.updateUser(id, username, email);
@@ -75,6 +81,7 @@ class UserService {
         }
     }
 
+    // Deletes a user by ID.
     async deleteUser(id) {
         try {
             return await this.userDao.deleteUser(id);

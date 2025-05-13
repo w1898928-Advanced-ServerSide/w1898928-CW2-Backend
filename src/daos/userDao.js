@@ -4,6 +4,7 @@ const { createResponse } = require('../utils/responseUtil');
 class UserDAO {
     constructor() {}
 
+    // Inserts a new user into the database.
     async createUser(username, password, email) {
         return new Promise((resolve, reject) => {
             const sql = `INSERT INTO users (username, password, email) VALUES (?, ?, ?)`;
@@ -14,6 +15,7 @@ class UserDAO {
         });
     }
 
+    // Retrieves a user by their unique ID.
     async getUserById(id) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM users WHERE id = ?`;
@@ -24,6 +26,7 @@ class UserDAO {
         });
     }
 
+    // Retrieves a user by their username
     async getUserByUsername(username) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM users WHERE username = ?`;
@@ -34,6 +37,7 @@ class UserDAO {
         });
     }
 
+    // Returns all users in the database.
     async getAllUsers() {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM users`;
@@ -44,6 +48,7 @@ class UserDAO {
         });
     }
 
+    // Updates an existing user's information.
     async updateUser(id, username, password, email) {
         return new Promise((resolve, reject) => {
             const sql = `UPDATE users SET username = ?, password = ?, email = ? WHERE id = ?`;
@@ -54,6 +59,7 @@ class UserDAO {
         });
     }
 
+    // Deletes a user from the database by ID.
     async deleteUser(id) {
         return new Promise((resolve, reject) => {
             const sql = `DELETE FROM users WHERE id = ?`;

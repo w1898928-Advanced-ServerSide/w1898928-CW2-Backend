@@ -6,6 +6,7 @@ class BlogPostService {
         this.blogPostDao = new BlogPostDAO();
     }
 
+    // Creates a new blog post after validating
     async createBlogPost(userId, title, content, country, dateOfVisit, coverImage = null) {
         try {
             if (!title || !content || !country || !dateOfVisit) {
@@ -17,6 +18,7 @@ class BlogPostService {
         }
     }
 
+    // Fetches a single blog post by ID
     async getBlogPostById(blogPostId) {
         try {
             const result = await this.blogPostDao.getBlogPostById(blogPostId);
@@ -29,6 +31,7 @@ class BlogPostService {
         }
     }
 
+    // Fetches all blog posts.
     async getAllBlogPosts() {
         try {
             return await this.blogPostDao.getAllBlogPosts();
@@ -37,6 +40,7 @@ class BlogPostService {
         }
     }
 
+    // Fetches all blog posts by a specific user.
     async getBlogPostsByUserId(userId) {
         try {
             return await this.blogPostDao.getBlogPostsByUserId(userId);
@@ -45,6 +49,7 @@ class BlogPostService {
         }
     }
 
+    // Fetches all blog posts by country.
     async getBlogPostsByCountry(country) {
         try {
             return await this.blogPostDao.getBlogPostsByCountry(country);
@@ -53,6 +58,7 @@ class BlogPostService {
         }
     }
 
+    // Updates a blog post after validating fields
     async updateBlogPost(blogPostId, userId, title, content, country, dateOfVisit, coverImage = null) {
         try {
             if (!title || !content || !country || !dateOfVisit) {
@@ -68,6 +74,7 @@ class BlogPostService {
         }
     }
 
+    // Deletes a blog post
     async deleteBlogPost(blogPostId, userId) {
         try {
             const result = await this.blogPostDao.deleteBlogPost(blogPostId, userId);
@@ -80,6 +87,7 @@ class BlogPostService {
         }
     }
 
+    // Searches blog posts by title, content, or country.
     async searchBlogPosts(searchTerm) {
         try {
             if (!searchTerm || searchTerm.trim() === '') {
@@ -91,6 +99,7 @@ class BlogPostService {
         }
     }
 
+    //Returns the most recent blog posts 
     async getRecentBlogPosts(limit = 5) {
         try {
             const result = await this.blogPostDao.getAllBlogPosts();

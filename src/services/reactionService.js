@@ -6,6 +6,7 @@ class ReactionService {
         this.reactionDao = new ReactionDAO();
     }
 
+    // Add or update a reaction for a post (like/dislike)
     async addReaction(userId, postId, reactionType) {
         try {
             if (!userId || !postId || !reactionType) {
@@ -22,6 +23,7 @@ class ReactionService {
         }
     }
 
+    // Remove an existing reaction
     async removeReaction(userId, postId) {
         try {
             if (!userId || !postId) {
@@ -34,6 +36,7 @@ class ReactionService {
         }
     }
 
+    // Get like/dislike counts for a post
     async getReactionsForPost(postId) {
         try {
             if (!postId) {
@@ -46,6 +49,7 @@ class ReactionService {
         }
     }
 
+    // Get the current user's reaction to a post
     async getUserReaction(userId, postId) {
         try {
             if (!userId || !postId) {
@@ -58,6 +62,7 @@ class ReactionService {
         }
     }
 
+    // Get the most liked posts in the system (limited)
     async getMostLikedPosts(limit = 5) {
         try {
             if (limit && (isNaN(limit) || limit < 1)) {

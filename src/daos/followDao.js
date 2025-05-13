@@ -5,6 +5,7 @@ const CustomError = require('../utils/customError');
 class FollowDAO {
     constructor() {}
 
+    // Allows a user to follow another user
     async followUser(followerId, followingId) {
         return new Promise((resolve, reject) => {
             // Check if user is trying to follow themselves
@@ -35,6 +36,7 @@ class FollowDAO {
         });
     }
 
+    // Unfollow a user
     async unfollowUser(followerId, followingId) {
         return new Promise((resolve, reject) => {
             const sql = `DELETE FROM follows WHERE followerId = ? AND followingId = ?`;
@@ -48,6 +50,7 @@ class FollowDAO {
         });
     }
 
+    // Get a list of users who follow the specified user
     async getFollowers(userId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT u.id, u.username 
@@ -61,6 +64,7 @@ class FollowDAO {
         });
     }
 
+    // Get a list of users that the specified user is following
     async getFollowing(userId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT u.id, u.username 
@@ -74,6 +78,7 @@ class FollowDAO {
         });
     }
 
+    // Check if a user is following another user
     async isFollowing(followerId, followingId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT * FROM follows WHERE followerId = ? AND followingId = ?`;
@@ -84,6 +89,7 @@ class FollowDAO {
         });
     }
 
+    // Get follower and following counts for a user
     async getFollowCounts(userId) {
         return new Promise((resolve, reject) => {
             const followersSql = `SELECT COUNT(*) as count FROM follows WHERE followingId = ?`;

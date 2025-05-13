@@ -5,6 +5,7 @@ const CustomError = require('../utils/customError');
 class ReactionDAO {
     constructor() {}
 
+    // Add or update a reaction from a user to a post
     async addReaction(userId, postId, reactionType) {
         return new Promise((resolve, reject) => {
             // First check if reaction already exists
@@ -45,6 +46,7 @@ class ReactionDAO {
         });
     }
 
+    // Remove a user's reaction from a post
     async removeReaction(userId, postId) {
         return new Promise((resolve, reject) => {
             const sql = `DELETE FROM reactions WHERE userId = ? AND postId = ?`;
@@ -58,6 +60,7 @@ class ReactionDAO {
         });
     }
 
+    // Get total likes and dislikes for a specific post
     async getReactionsForPost(postId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT 
@@ -74,6 +77,7 @@ class ReactionDAO {
         });
     }
 
+    // Get the reaction a user has made to a post
     async getUserReaction(userId, postId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT type FROM reactions WHERE userId = ? AND postId = ?`;
@@ -86,6 +90,7 @@ class ReactionDAO {
         });
     }
 
+    // Get top posts sorted by most likes
     async getMostLikedPosts(limit = 5) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT 

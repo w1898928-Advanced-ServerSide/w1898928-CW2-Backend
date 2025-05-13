@@ -4,6 +4,7 @@ const { createResponse } = require('../utils/responseUtil');
 class BlogPostDAO {
     constructor() {}
 
+    // Create a new blog post in the database
     async createBlogPost(userId, title, content, country, dateOfVisit, coverImage = null) {
         return new Promise((resolve, reject) => {
             const sql = `INSERT INTO blogPosts 
@@ -26,6 +27,7 @@ class BlogPostDAO {
         });
     }
 
+    // Retrieve a single blog post by its ID
     async getBlogPostById(blogPostId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT bp.*, u.username 
@@ -40,6 +42,7 @@ class BlogPostDAO {
         });
     }
 
+    // Retrieve all blog posts, ordered by creation date
     async getAllBlogPosts() {
         return new Promise((resolve, reject) => {
             const sql = `SELECT bp.*, u.username 
@@ -54,6 +57,7 @@ class BlogPostDAO {
         });
     }
 
+    // Get all blog posts created by a specific user
     async getBlogPostsByUserId(userId) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT bp.*, u.username 
@@ -69,6 +73,7 @@ class BlogPostDAO {
         });
     }
 
+    // Get all blog posts related to a specific country
     async getBlogPostsByCountry(country) {
         return new Promise((resolve, reject) => {
             const sql = `SELECT bp.*, u.username 
@@ -84,6 +89,7 @@ class BlogPostDAO {
         });
     }
 
+    // Update an existing blog post 
     async updateBlogPost(blogPostId, userId, title, content, country, dateOfVisit, coverImage = null) {
         return new Promise((resolve, reject) => {
             const sql = `UPDATE blogPosts 
@@ -98,6 +104,7 @@ class BlogPostDAO {
         });
     }
 
+    // Delete a blog post
     async deleteBlogPost(blogPostId, userId) {
         return new Promise((resolve, reject) => {
             const sql = `DELETE FROM blogPosts WHERE blogPostId = ? AND userId = ?`;
@@ -109,6 +116,7 @@ class BlogPostDAO {
         });
     }
 
+    // Search blog posts by title, content, or country
     async searchBlogPosts(searchTerm) {
         return new Promise((resolve, reject) => {
             const searchPattern = `%${searchTerm}%`;
